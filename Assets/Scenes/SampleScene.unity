@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 96e61fffa0d51ab43a80a4cc443c065e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.7742809, g: 0.78876215, b: 0.8060453, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8760,6 +8760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145804979}
   - component: {fileID: 1145804978}
+  - component: {fileID: 1145804980}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8803,7 +8804,7 @@ Transform:
   m_GameObject: {fileID: 1145804977}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.5084305, y: 1.2480028, z: -1.1872916}
+  m_LocalPosition: {x: -1.63, y: 1.2480028, z: -1.1872916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8812,6 +8813,29 @@ Transform:
   - {fileID: 144477490}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1145804980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145804977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7635ac9694ec33f4aaa99ecb859984bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  groundDrag: 5
+  jumpForce: 12
+  jumpCooldown: 0.25
+  airMultiplier: 0.4
+  jumpKey: 32
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 128
+  orientation: {fileID: 1852797048}
 --- !u!1 &1304387305
 GameObject:
   m_ObjectHideFlags: 0
@@ -9188,7 +9212,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 91
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -9249,7 +9273,7 @@ GameObject:
   - component: {fileID: 1853951342}
   - component: {fileID: 1853951341}
   - component: {fileID: 1853951340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9337,8 +9361,8 @@ Transform:
   m_GameObject: {fileID: 1853951339}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.21, z: -0.0499}
-  m_LocalScale: {x: 1.9928855, y: 2.0796936, z: 1.9580641}
+  m_LocalPosition: {x: -5.3882, y: 0.21, z: -0.0664}
+  m_LocalScale: {x: 4.93337, y: 2.0796936, z: 5.973033}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
