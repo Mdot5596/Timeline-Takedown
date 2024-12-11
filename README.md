@@ -9,7 +9,7 @@
 
 <h3>Link to the Youtube Devlogs:</h3>
 <h4>Devlog 1: https://youtu.be/Su4Demj-MFw </h4>
-<h4>Devlog 2: </h4>
+<h4>Devlog 2: https://youtu.be/RXlF7QE14os </h4>
 
 
 <h3>Paper-based images such as concept art and level designs:</h3>
