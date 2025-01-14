@@ -13,6 +13,8 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor at the start
+        Cursor.visible = true; // Hide the cursor at the start
     }
 
     void Update()
@@ -35,13 +37,21 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        // Make the cursor visible and unlocked
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void ResumeGame()
     {
- pauseMenu.SetActive(false);
+        pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+
+        // Make the cursor visible and unlocked
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
     }
 
     public void GoToMainMenu()
