@@ -10,7 +10,7 @@
 # Devlogs
 - [Devlog 1](https://youtu.be/Su4Demj-MFw)
 - [Devlog 2](https://youtu.be/RXlF7QE14os)
-- [Devlog_3]
+- [Devlog_3](https://youtu.be/vxEHmGPZ-y4)
 
 # Resources
 ### Paper-based images such as concept art and level designs:</h3>
