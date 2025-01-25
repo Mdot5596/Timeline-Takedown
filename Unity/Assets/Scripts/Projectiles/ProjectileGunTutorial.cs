@@ -2,14 +2,6 @@
 using UnityEngine;
 using TMPro;
 
-/// Thanks for downloading my projectile gun script! :D
-/// Feel free to use it in any project you like!
-/// 
-/// The code is fully commented but if you still have any questions
-/// don't hesitate to write a yt comment
-/// or use the #coding-problems channel of my discord server
-/// 
-/// Dave
 public class ProjectileGunTutorial : MonoBehaviour
 {
     //bullet 
@@ -40,7 +32,7 @@ public class ProjectileGunTutorial : MonoBehaviour
     public GameObject muzzleFlash;
     public TextMeshProUGUI ammunitionDisplay;
 
-    //bug fixing :D
+    //bug fixing 
     public bool allowInvoke = true;
 
     private void Awake()
@@ -54,7 +46,7 @@ public class ProjectileGunTutorial : MonoBehaviour
     {
         MyInput();
 
-        //Set ammo display, if it exists :D
+        //Set ammo display
         if (ammunitionDisplay != null)
             ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
     }
