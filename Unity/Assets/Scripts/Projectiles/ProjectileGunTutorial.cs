@@ -9,6 +9,9 @@ public class ProjectileGunTutorial : MonoBehaviour
 
     //bullet force
     public float shootForce, upwardForce;
+        
+    // Bullet lifetime
+    public float bulletLifetime = 5f;
 
     //Gun stats
     public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
@@ -104,6 +107,9 @@ public class ProjectileGunTutorial : MonoBehaviour
         //Add forces to bullet
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
         currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
+
+        // Destroy bullet after a lifetime
+        Destroy(currentBullet, bulletLifetime);
 
         //Instantiate muzzle flash, if you have one
         if (muzzleFlash != null)
