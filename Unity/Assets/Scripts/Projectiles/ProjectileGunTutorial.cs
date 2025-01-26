@@ -6,7 +6,7 @@ public class ProjectileGunTutorial : MonoBehaviour
 {
     //bullet 
     public GameObject bullet;
-
+    
     //bullet force
     public float shootForce, upwardForce;
         
