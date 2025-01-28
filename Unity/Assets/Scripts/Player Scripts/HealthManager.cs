@@ -7,11 +7,11 @@ public class HealthManager : MonoBehaviour
 {
     public Image healthBar;
     public float healthAmount = 100f;
-
+    private float currentHealth;
 
     void Start()
     {
-        
+        currentHealth = healthAmount;
     }
 
     void Update()
@@ -34,6 +34,12 @@ public class HealthManager : MonoBehaviour
     {
         healthAmount -= damage;
         healthBar.fillAmount = healthAmount / 100f;
+         currentHealth = healthAmount; // Sync currentHealth with healthAmount
+        Debug.Log($"Player Health: {currentHealth}");
+         if (currentHealth <= 0)
+        {
+            Die();
+        }
 
     }
 
@@ -44,4 +50,11 @@ public class HealthManager : MonoBehaviour
 
     healthBar.fillAmount = healthAmount / 100f;
 }
+
+  private void Die()
+    {
+        Debug.Log("Player Died!");
+        // Add death logic here, such as reloading the level
+    }
+
 }

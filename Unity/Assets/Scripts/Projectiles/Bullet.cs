@@ -13,8 +13,7 @@ public class Bullet : MonoBehaviour
             // Apply damage to the enemy
             enemyHealth.TakeDamage(damage);
         }
-
         // Destroy the bullet upon collision
-        Destroy(gameObject);
+       Destroy(gameObject);
     }
 }
