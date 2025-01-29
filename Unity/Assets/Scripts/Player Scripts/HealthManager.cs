@@ -8,13 +8,14 @@ public class HealthManager : MonoBehaviour
     public Image healthBar;
     public float healthAmount = 100f;
     private float currentHealth;
- public GameObject gameOverCanvas; // Reference to the Game Over Canvas
+    public GameObject gameOverCanvas; 
 
 
     void Start()
     {
         currentHealth = healthAmount;
-        gameOverCanvas.SetActive(false); // Ensure the Game Over Canvas is disabled at start
+        gameOverCanvas.SetActive(false); 
+        
     }
 
     void Update()
@@ -37,7 +38,7 @@ public class HealthManager : MonoBehaviour
     {
         healthAmount -= damage;
         healthBar.fillAmount = healthAmount / 100f;
-         currentHealth = healthAmount; // Sync currentHealth with healthAmount
+        currentHealth = healthAmount; // Sync currentHealth with healthAmount
         Debug.Log($"Player Health: {currentHealth}");
          if (currentHealth <= 0)
         {
@@ -59,7 +60,6 @@ public class HealthManager : MonoBehaviour
         Debug.Log("Player Died!");
         gameOverCanvas.SetActive(true); 
         Time.timeScale = 0f; 
-        // Add death logic here, such as reloading the level
     }
 
 }

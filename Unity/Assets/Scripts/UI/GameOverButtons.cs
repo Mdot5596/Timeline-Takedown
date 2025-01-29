@@ -3,15 +3,27 @@ using UnityEngine.SceneManagement;
 
 public class GameOverButtons : MonoBehaviour
 {
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false; 
+    }
+
     public void RestartGame()
     {
         Time.timeScale = 1f; 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+        SceneManager.LoadScene(0); 
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void QuitGame()
     {
-        Application.Quit(); 
         Debug.Log("Game Quit");
+        Application.Quit(); 
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true; 
     }
 }
