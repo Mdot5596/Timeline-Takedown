@@ -5,7 +5,8 @@ public class GameOverButtons : MonoBehaviour
 {
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Confined;
+       //for some reason this was making it drag around??/ 
+      //  Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false; 
     }
 
