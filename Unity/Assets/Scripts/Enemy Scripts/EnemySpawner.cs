@@ -3,41 +3,27 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Enemy prefabs will go here:
-    [SerializeField] private GameObject skeletonPrefab; 
+    [SerializeField] private GameObject skeletonPrefab;
+    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private WaveManager waveManager;
 
-    //How often the enemys spawn in 
-    [SerializeField] private float spawnInterval = 3.5f; 
-    //Example ->  [SerializeField] private float spawnInterval = 3.5f; 
+    private int enemiesAlive = 0;
 
-    //Round Number
-   // [SerializeField] private float roundNumber = 1; 
-
-
-    // Array of predefined spawn points
-    [SerializeField] private Transform[] spawnPoints; 
-
-    void Start()
+    public void StartWave(int enemyCount, int waveNumber)
     {
-        StartCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnWave(enemyCount, waveNumber));
     }
 
-    private IEnumerator SpawnEnemyRoutine()
+    private IEnumerator SpawnWave(int enemyCount, int waveNumber)
     {
-        while (true)
+        for (int i = 0; i < enemyCount; i++)
         {
-            yield return new WaitForSeconds(spawnInterval);
-            SpawnEnemy();
+            yield return new WaitForSeconds(1f);
+            SpawnEnemy(waveNumber);
         }
     }
 
-//rnd logic
- //   private void roundNumber()
-  //  {
-
- //   }
-//
-    private void SpawnEnemy()
+    private void SpawnEnemy(int waveNumber)
     {
         if (spawnPoints.Length == 0)
         {
@@ -46,7 +32,20 @@ public class EnemySpawner : MonoBehaviour
         }
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        GameObject enemy = Instantiate(skeletonPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        Instantiate(skeletonPrefab, spawnPoint.position, spawnPoint.rotation);
+        EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+        if (enemyAI != null)
+        {
+            enemyAI.ScaleStats(waveNumber);
+        }
+
+        enemiesAlive++;
+    }
+
+    public void EnemyDefeated()
+    {
+        enemiesAlive--;
+        waveManager.EnemyDefeated(); // Notify UI
     }
 }
