@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     //Example ->  [SerializeField] private float spawnInterval = 3.5f; 
 
     //Round Number
-    [SerializeField] private float roundNumber = 1; 
+   // [SerializeField] private float roundNumber = 1; 
 
 
     // Array of predefined spawn points
@@ -32,10 +32,10 @@ public class EnemySpawner : MonoBehaviour
     }
 
 //rnd logic
-    private void roundNumber()
-    {
+ //   private void roundNumber()
+  //  {
 
-    }
+ //   }
 //
     private void SpawnEnemy()
     {
