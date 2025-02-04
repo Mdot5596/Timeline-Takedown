@@ -4,10 +4,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject skeletonPrefab;
+    [SerializeField] private GameObject bossPrefab; 
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private WaveManager waveManager;
 
-    private int enemiesAlive = 0; 
+    private int enemiesAlive = 0;
 
     public void StartWave(int enemyCount, int waveNumber)
     {
@@ -43,8 +44,28 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void SpawnBoss(int waveNumber)
+    {
+        if (spawnPoints.Length == 0)
+        {
+            Debug.LogWarning("[EnemySpawner] No spawn points assigned!");
+            return;
+        }
+
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        GameObject boss = Instantiate(bossPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        BossAI bossAI = boss.GetComponent<BossAI>();
+        if (bossAI != null)
+        {
+            bossAI.ScaleStats(waveNumber);
+        }
+
+        Debug.Log($"[EnemySpawner] BOSS SPAWNED for Wave {waveNumber}!");
+    }
+
     public void EnemyDefeated()
     {
-        waveManager.EnemyDefeated(); // Notify WaveManager
+        waveManager.EnemyDefeated();
     }
 }
