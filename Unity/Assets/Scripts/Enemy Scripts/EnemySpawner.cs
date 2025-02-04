@@ -42,4 +42,9 @@ public class EnemySpawner : MonoBehaviour
             enemyAI.ScaleStats(waveNumber);
         }
     }
+
+    public void EnemyDefeated()
+    {
+        waveManager.EnemyDefeated(); // Notify WaveManager
+    }
 }
