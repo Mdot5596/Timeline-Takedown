@@ -42,6 +42,8 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Enemy died!");
+        //Have To add this so wave func  works
+        FindObjectOfType<WaveManager>().EnemyDefeated();
         Destroy(gameObject); // Destroy the enemy
     }
 }

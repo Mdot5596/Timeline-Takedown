@@ -7,10 +7,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private WaveManager waveManager;
 
-    private int enemiesAlive = 0;
+    private int enemiesAlive = 0; 
 
     public void StartWave(int enemyCount, int waveNumber)
     {
+        enemiesAlive = enemyCount;
+        Debug.Log($"[EnemySpawner] Spawning {enemyCount} enemies for Wave {waveNumber}.");
         StartCoroutine(SpawnWave(enemyCount, waveNumber));
     }
 
@@ -27,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (spawnPoints.Length == 0)
         {
-            Debug.LogWarning("No spawn points assigned!");
+            Debug.LogWarning("[EnemySpawner] No spawn points assigned!");
             return;
         }
 
@@ -39,13 +41,5 @@ public class EnemySpawner : MonoBehaviour
         {
             enemyAI.ScaleStats(waveNumber);
         }
-
-        enemiesAlive++;
-    }
-
-    public void EnemyDefeated()
-    {
-        enemiesAlive--;
-        waveManager.EnemyDefeated(); // Notify UI
     }
 }
