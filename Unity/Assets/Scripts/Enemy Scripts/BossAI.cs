@@ -14,22 +14,25 @@ public class BossAI : MonoBehaviour
     private float speed;
     private int damage;
 
+    public GameObject dropItem; 
+    private int waveNumber; 
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void ScaleStats(int waveNumber)
+    public void ScaleStats(int wave)
     {
-        health = baseHealth + (waveNumber * 100); // Boss gets stronger per wave
-        speed = baseSpeed + (waveNumber * 0.2f);
-        damage = baseDamage + (waveNumber * 10);
+        waveNumber = wave; 
+        health = baseHealth + (wave * 100);
+        speed = baseSpeed + (wave * 0.2f);
+        damage = baseDamage + (wave * 10);
 
         agent.speed = speed;
 
-//TEST LOG
-        Debug.Log($"[BossAI] Boss Stats - Health: {health}, Speed: {speed}, Damage: {damage}");
+        Debug.Log($"[BossAI] Wave {waveNumber} Boss - Health: {health}, Speed: {speed}, Damage: {damage}");
     }
 
     public void TakeDamage(int damageAmount)
@@ -45,6 +48,13 @@ public class BossAI : MonoBehaviour
     private void Die()
     {
         Debug.Log($"[BossAI] Boss Defeated!");
+
+        if (waveNumber == 5 && dropItem != null)
+        {
+            Instantiate(dropItem, transform.position, Quaternion.identity);
+            Debug.Log("[BossAI] Wave 10 Boss Dropped Reward!");
+        }
+
         FindObjectOfType<WaveManager>().EnemyDefeated();
         Destroy(gameObject);
     }
