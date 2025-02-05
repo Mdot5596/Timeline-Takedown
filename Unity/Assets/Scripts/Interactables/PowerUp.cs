@@ -30,28 +30,40 @@ public class PowerUp : MonoBehaviour
     }
 }
 
-private void ApplyEffect(GameObject detectedObject)
+private void ApplyEffect(GameObject player)
 {
-    Debug.Log($"[PowerUp] Checking {detectedObject.name} for HealthManager...");
+    HealthManager healthManager = player.GetComponentInParent<HealthManager>();
+    EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
+    PowerUpUI powerUpUI = FindObjectOfType<PowerUpUI>(); // Find UI
 
-    // Try getting HealthManager directly
-    HealthManager healthManager = detectedObject.GetComponent<HealthManager>();
-
-    // If not found, check parent objects
-    if (healthManager == null)
+    if (powerUpType == PowerUpType.Heal)
     {
-        Debug.LogWarning($"[PowerUp] {detectedObject.name} has NO HealthManager! Checking parent...");
-        healthManager = detectedObject.GetComponentInParent<HealthManager>();
+        if (healthManager != null)
+        {
+            healthManager.Heal(50);
+            Debug.Log("[PowerUp] Player healed! New health: " + healthManager.healthAmount);
+
+            // Show UI message
+            if (powerUpUI != null)
+            {
+                powerUpUI.ShowPowerUpMessage("Healed +50 HP!");    ////Need to think of power up names
+            }
+        }
     }
+    else if (powerUpType == PowerUpType.InstantKill)
+    {
+        if (enemySpawner != null)
+        {
+            enemySpawner.InstantKillAllEnemies();
+            Debug.Log("[PowerUp] All enemies instantly killed!");
 
-    if (healthManager != null)
-    {
-        healthManager.Heal(50);
-        Debug.Log("[PowerUp] Player healed! New health: " + healthManager.healthAmount);
-    }
-    else
-    {
-        Debug.LogError("[PowerUp] ERROR: HealthManager STILL NOT FOUND, even in parent!");
+            // Show UI message
+            if (powerUpUI != null)
+            {
+                powerUpUI.ShowPowerUpMessage("Instant Kill Activated!"); //Need to think of power up names
+
+            }
+        }
     }
 }
 
