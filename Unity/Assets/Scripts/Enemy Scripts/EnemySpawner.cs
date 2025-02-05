@@ -64,6 +64,24 @@ public class EnemySpawner : MonoBehaviour
         Debug.Log($"[EnemySpawner] BOSS SPAWNED for Wave {waveNumber}!");
     }
 
+    //Power Up
+    public void InstantKillAllEnemies()
+{
+    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+    foreach (GameObject enemy in enemies)
+    {
+        EnemyAI enemyAI = enemy.GetComponent<EnemyAI>();
+        if (enemyAI != null)
+        {
+            enemyAI.TakeDamage(9999); // Kill all enemies instantly
+        }
+    }
+
+    Debug.Log("[EnemySpawner] All enemies instantly killed by power-up!");
+}
+
+
     public void EnemyDefeated()
     {
         waveManager.EnemyDefeated();
