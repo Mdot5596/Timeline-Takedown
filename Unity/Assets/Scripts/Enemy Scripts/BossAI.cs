@@ -32,7 +32,6 @@ public class BossAI : MonoBehaviour
 
         agent.speed = speed;
 
-        Debug.Log($"[BossAI] Wave {waveNumber} Boss - Health: {health}, Speed: {speed}, Damage: {damage}");
     }
 
     public void TakeDamage(int damageAmount)
@@ -45,17 +44,16 @@ public class BossAI : MonoBehaviour
         }
     }
 
-    private void Die()
+   private void Die()
+  {
+
+    if (waveNumber == 5 && dropItem != null)
     {
-        Debug.Log($"[BossAI] Boss Defeated!");
-
-        if (waveNumber == 5 && dropItem != null)
-        {
-            Instantiate(dropItem, transform.position, Quaternion.identity);
-            Debug.Log("[BossAI] Wave 10 Boss Dropped Reward!");
-        }
-
-        FindObjectOfType<WaveManager>().EnemyDefeated();
-        Destroy(gameObject);
+        Instantiate(dropItem, transform.position, Quaternion.identity);
     }
+
+    FindObjectOfType<WaveManager>().EnemyDefeated(); 
+    Destroy(gameObject);
+ }
+
 }

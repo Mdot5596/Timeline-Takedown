@@ -26,31 +26,29 @@ public class WaveManager : MonoBehaviour
     {
         StartNewWave();
     }
+    
+   private void StartNewWave()
+   {
+    isBossWave = (waveNumber == 5 || waveNumber == finalWave);
+    
+    int enemyCount = GetEnemyCountForWave(waveNumber); // Normal enemies
+    enemiesRemaining = enemyCount + (isBossWave ? 1 : 0); // Include the boss if it's a boss wave
 
-    private void StartNewWave()
+
+    // Update UI
+    waveText.text = isBossWave ? $"Wave {waveNumber} - BOSS FIGHT!" : $"Wave: {waveNumber}";
+    enemiesText.text = $"Enemies Left: {enemiesRemaining}";
+    killsText.text = $"Total Kills: {totalKills}/{nextWaveThreshold}";
+
+    // Spawn normal enemies
+    enemySpawner.StartWave(enemyCount, waveNumber);
+
+    // Spawn boss (only for Wave 5 and 10)
+    if (isBossWave)
     {
-        // Check if this is a Boss Wave
-        isBossWave = (waveNumber == 5 || waveNumber == finalWave);
-        int enemyCount = isBossWave ? 1 : GetEnemyCountForWave(waveNumber);
-        enemiesRemaining = enemyCount;
-
-        Debug.Log($"[WaveManager] Starting Wave {waveNumber}. {(isBossWave ? "Boss Wave!" : $"Enemies to spawn: {enemyCount}")}");
-
-        // Update UI
-        waveText.text = isBossWave ? $"Wave {waveNumber} - BOSS FIGHT!" : $"Wave: {waveNumber}";
-        enemiesText.text = $"Enemies Left: {enemiesRemaining}";
-        killsText.text = $"Total Kills: {totalKills}/{nextWaveThreshold}";
-
-        // Spawn normal enemies or a boss
-        if (isBossWave)
-        {
-            enemySpawner.SpawnBoss(waveNumber);
-        }
-        else
-        {
-            enemySpawner.StartWave(enemyCount, waveNumber);
-        }
+        enemySpawner.SpawnBoss(waveNumber);
     }
+}
 
     private int GetEnemyCountForWave(int wave)
     {
@@ -82,7 +80,6 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
-                Debug.Log($"[WaveManager]  Final wave defeated.");
                 waveText.text = " Pick Up the timepice";
             }
         }
@@ -93,8 +90,6 @@ public class WaveManager : MonoBehaviour
         waveNumber++;
         int enemyCount = isBossWave ? 1 : GetEnemyCountForWave(waveNumber);
         nextWaveThreshold = totalKills + enemyCount;
-
-        Debug.Log($"[WaveManager] Advancing to Wave {waveNumber}. Next kill threshold: {nextWaveThreshold}");
 
         StartNewWave();
     }
