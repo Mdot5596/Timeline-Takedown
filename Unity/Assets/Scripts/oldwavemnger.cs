@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -94,3 +95,4 @@ public class WaveManager : MonoBehaviour
         StartNewWave();
     }
 }
+*/
