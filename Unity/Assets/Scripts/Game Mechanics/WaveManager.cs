@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -7,15 +8,15 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private EnemySpawner enemySpawner;
     private int waveNumber = 1;
     private int totalKills = 0;
-    private int nextWaveThreshold = 10;
     private int enemiesRemaining = 0;
     private bool isBossWave = false;
+    private bool bossSpawned = false;  //T his prevents multiple boss spawns
 
     // Max Wave (Final Level)
     private int finalWave = 10;
 
-    // Predefined enemy counts per wave
-     private int[] enemiesPerWave = { 10, 15, 25, 35, 50 };
+    // Manually define the number of enemies per wave
+    private int[] enemiesPerWave = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }; // Wave 10 is boss only
 
     // UI Elements
     [SerializeField] private TextMeshProUGUI waveText;
@@ -26,71 +27,103 @@ public class WaveManager : MonoBehaviour
     {
         StartNewWave();
     }
-    
-   private void StartNewWave()
-   {
-    isBossWave = (waveNumber == 5 || waveNumber == finalWave);
-    
-    int enemyCount = GetEnemyCountForWave(waveNumber); // Normal enemies
-    enemiesRemaining = enemyCount + (isBossWave ? 1 : 0); // Include the boss if it's a boss wave
 
-
-    // Update UI
-    waveText.text = isBossWave ? $"Wave {waveNumber} - BOSS FIGHT!" : $"Wave: {waveNumber}";
-    enemiesText.text = $"Enemies Left: {enemiesRemaining}";
-    killsText.text = $"Total Kills: {totalKills}/{nextWaveThreshold}";
-
-    // Spawn normal enemies
-    enemySpawner.StartWave(enemyCount, waveNumber);
-
-    // Spawn boss (only for Wave 5 and 10)
-    if (isBossWave)
+    private void StartNewWave()
     {
-        enemySpawner.SpawnBoss(waveNumber);
+        // Reset boss spawn flag for each wave
+        bossSpawned = false;
+
+        // Determine if it's a boss wave (Wave 5 and the final wave)
+        isBossWave = (waveNumber == 5 || waveNumber == finalWave);
+
+        // Get the number of enemies to spawn for the current wave
+        int enemyCount = GetEnemyCountForWave(waveNumber);
+        enemiesRemaining = enemyCount + (isBossWave ? 1 : 0); // Adds 1 more enemy on boss wave (for the boss..)
+
+        Debug.Log($"[WaveManager] Starting Wave {waveNumber}. Spawning {enemyCount} enemies. Boss: {isBossWave}");
+
+        // Update UI
+        waveText.text = isBossWave ? $"Wave {waveNumber} - BOSS FIGHT!" : $"Wave: {waveNumber}";
+        enemiesText.text = $"Enemies Left: {enemiesRemaining}";
+        killsText.text = $"Total Kills: {totalKills}";
+
+        // Start spawning enemies
+        enemySpawner.StartWave(enemyCount, waveNumber);
+
+        // Spawn the boss (only for Wave 5 and 10)
+        if (isBossWave && !bossSpawned)
+        {
+            enemySpawner.SpawnBoss(waveNumber);
+            bossSpawned = true; // Mark boss as spawned
+            Debug.Log($"[WaveManager] BOSS SPAWNED for Wave {waveNumber}!");
+        }
     }
-}
 
     private int GetEnemyCountForWave(int wave)
     {
+        // Return the predefined number of enemies for the given wave, or a default number if out of range
         if (wave - 1 < enemiesPerWave.Length)
         {
             return enemiesPerWave[wave - 1];
         }
-        else
-        {
-            return enemiesPerWave[enemiesPerWave.Length - 1] + (wave - enemiesPerWave.Length) * 10;
-        }
+        return 50; // Default value if debugging higher waves
     }
 
     public void EnemyDefeated()
+{
+    // Make sure we only process if there are enemies remaining
+    if (enemiesRemaining > 0) 
     {
-        totalKills++;
-        enemiesRemaining--;
+        Debug.Log($"[WaveManager] Enemy Defeated! Enemies Remaining: {enemiesRemaining}");
 
+        // Increase total kills only once per valid enemy defeat
+        totalKills++; 
+        
+        // Decrease enemies remaining after a valid kill
+        enemiesRemaining--; 
 
-        // Update UI
+        // Update UI with the new counts
         enemiesText.text = $"Enemies Left: {enemiesRemaining}";
-        killsText.text = $"Total Kills: {totalKills}/{nextWaveThreshold}";
-
-        if (totalKills >= nextWaveThreshold && enemiesRemaining <= 0)
-        {
-            if (waveNumber < finalWave)
-            {
-                NextWave();
-            }
-            else
-            {
-                waveText.text = " Pick Up the timepice";
-            }
-        }
+        killsText.text = $"Total Kills: {totalKills}"; // Update kills text immediately after a kill
     }
+    else
+    {
+        Debug.LogWarning("[WaveManager] Attempted to call EnemyDefeated but no enemies are remaining.");
+    }
+
+    // Only move to the next wave if all enemies are defeated
+    if (enemiesRemaining == 0)
+    {
+        Debug.Log($"[WaveManager] Wave {waveNumber} complete! Moving to next wave.");
+        NextWave();
+    }
+}
+
 
     private void NextWave()
     {
-        waveNumber++;
-        int enemyCount = isBossWave ? 1 : GetEnemyCountForWave(waveNumber);
-        nextWaveThreshold = totalKills + enemyCount;
+        // Ensure we only move to the next wave once all enemies are defeated
+        if (enemiesRemaining > 0) return; // Prevent moving to the next wave if enemies are still remaining
 
+        waveNumber++; // Move to the next wave
+        isBossWave = (waveNumber == 5 || waveNumber == finalWave); // Check for boss waves
+
+        int enemyCount = GetEnemyCountForWave(waveNumber); // Get the number of enemies for the current wave
+        enemiesRemaining = enemyCount + (isBossWave ? 1 : 0); // If it's a boss wave, add 1 more enemy (the boss)
+
+        Debug.Log($"[WaveManager] Advancing to Wave {waveNumber}. Enemies Remaining: {enemiesRemaining}");
+
+        // Start the new wave after a delay (cooldown)
+        StartCoroutine(WaitForNextWave());
+    }
+
+    private IEnumerator WaitForNextWave()
+    {
+        // Wait for 5 seconds before moving to the next wave (adjust this as needed)
+        yield return new WaitForSeconds(5f); 
+
+        // After the delay, start the new wave
         StartNewWave();
     }
 }
+*/
