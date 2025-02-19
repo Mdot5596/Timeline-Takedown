@@ -1,9 +1,15 @@
 
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class ProjectileGunTutorial : MonoBehaviour
 {
+
+    //Gun audio
+    public AudioSource gunAudio;
+    
+
     //bullet 
     public GameObject bullet;
     
@@ -35,6 +41,7 @@ public class ProjectileGunTutorial : MonoBehaviour
     public GameObject muzzleFlash;
     public TextMeshProUGUI ammunitionDisplay;
 
+
     //bug fixing 
     public bool allowInvoke = true;
 
@@ -47,6 +54,7 @@ public class ProjectileGunTutorial : MonoBehaviour
 
     private void Update()
     {
+
         MyInput();
 
         //Set ammo display
@@ -77,6 +85,10 @@ public class ProjectileGunTutorial : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
+
+        //play gunshotsound
+        if (gunAudio != null)
+        gunAudio.Play();
 
         //Find the exact hit position using a raycast
         Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); //Just a ray through the middle of your current view
