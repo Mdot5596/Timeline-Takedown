@@ -97,7 +97,7 @@ MonoBehaviour:
   baseHealth: 1
   baseSpeed: 2.5
   baseDamage: 50
-  dropItem: {fileID: 6546091847094419045, guid: 0536a882e20e9574a82a49487c33ebd0, type: 3}
+  FinalBossReward: {fileID: 6546091847094419045, guid: 0536a882e20e9574a82a49487c33ebd0, type: 3}
 --- !u!114 &7290042556171675182
 MonoBehaviour:
   m_ObjectHideFlags: 0

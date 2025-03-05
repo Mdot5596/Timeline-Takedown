@@ -14,7 +14,7 @@ public class BossAI : MonoBehaviour
     private float speed;
     private int damage;
 
-    public GameObject dropItem; 
+    public GameObject FinalBossReward; 
     private int waveNumber; 
 
     private void Awake()
@@ -47,13 +47,25 @@ public class BossAI : MonoBehaviour
    private void Die()
   {
 
-    if (waveNumber == 5 && dropItem != null)
-    {
-        Instantiate(dropItem, transform.position, Quaternion.identity);
-    }
+ //   if (waveNumber == 5 && dropItem != null)
+ //   {
+  //      Instantiate(dropItem, transform.position, Quaternion.identity);
+  //  }
 
     FindObjectOfType<WaveManager>().EnemyDefeated(); 
+    DropItem();
     Destroy(gameObject);
  }
 
-}
+void DropItem()
+{
+    if (FinalBossReward != null)
+    {
+        Instantiate(FinalBossReward, transform.position + Vector3.up * 1f, Quaternion.identity);
+    }
+    else
+    {
+        Debug.LogWarning("FinalBossReward prefab is not assigned in the Inspector!");
+    }
+} }
+
