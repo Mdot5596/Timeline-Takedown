@@ -889,6 +889,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4311111495703447436, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2680014413204938252}
+    - targetCorrespondingSourceObject: {fileID: 4311111495703447436, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6234234096366415215}
   m_SourcePrefab: {fileID: 100100000, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
 --- !u!1 &1325461987280481563 stripped
 GameObject:
@@ -978,7 +981,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.6666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: f1bbbae8c5e8d9d4ba5c9b1d5696606c, type: 2}
   m_BuildHeightMesh: 0
@@ -994,23 +997,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0796c99bb072bf419a437f692ea73be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 3304149173231033417}
-  player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  health: 120
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 0
-  timeBetweenAttacks: 5
-  projectile: {fileID: 6996702118419933272, guid: c3ac364a30df8dd478b1d7b56cde7d94, type: 3}
-  sightRange: 50
-  attackRange: 40
-  playerInSightRange: 0
-  playerInAttackRange: 0
+  baseHealth: 100
+  baseSpeed: 3.5
+  baseDamage: 10
 --- !u!114 &2680014413204938252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,6 +1020,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthbar: {fileID: 0}
   maxHealth: 300
+--- !u!114 &6234234096366415215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325461987280481563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0138efb07526a46aa9125a9d72b093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  bulletLifetime: 5
+  shootForce: 20
+  upwardForce: 0
 --- !u!4 &2611988275064479496 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 977136844864435615, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
