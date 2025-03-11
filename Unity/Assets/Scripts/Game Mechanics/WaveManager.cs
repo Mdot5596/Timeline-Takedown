@@ -6,6 +6,9 @@ using TMPro;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private AudioSource audioSource; // Audio Source Component
+    [SerializeField] private AudioClip finalWaveCompleteSound; // Victory Sound
+
     private int waveNumber = 1;
     private int totalKills = 0;
     private int enemiesRemaining = 0;
@@ -13,10 +16,10 @@ public class WaveManager : MonoBehaviour
     private bool bossSpawned = false;  //T his prevents multiple boss spawns
 
     // Max Wave (Final Level)
-    private int finalWave = 10;
+    private int finalWave = 5;
 
     // Manually define the number of enemies per wave
-    private int[] enemiesPerWave = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 1 }; // Wave 10 is boss only
+    private int[] enemiesPerWave = { 1, 2, 3, 4, 5 }; // Wave 10 is boss only
 
     // UI Elements
     [SerializeField] private TextMeshProUGUI waveText;
@@ -100,22 +103,36 @@ public class WaveManager : MonoBehaviour
 }
 
 
-    private void NextWave()
+private void NextWave()
+{
+    // Ensure we only move to the next wave if all enemies are defeated
+    if (enemiesRemaining > 0) return;
+
+if (waveNumber >= finalWave)
+{
+    Debug.Log("[WaveManager] Final wave completed! No more waves.");
+
+    // Play the final wave complete sound
+    if (audioSource != null && finalWaveCompleteSound != null)
     {
-        // Ensure we only move to the next wave once all enemies are defeated
-        if (enemiesRemaining > 0) return; // Prevent moving to the next wave if enemies are still remaining
-
-        waveNumber++; // Move to the next wave
-        isBossWave = (waveNumber == 5 || waveNumber == finalWave); // Check for boss waves
-
-        int enemyCount = GetEnemyCountForWave(waveNumber); // Get the number of enemies for the current wave
-        enemiesRemaining = enemyCount + (isBossWave ? 1 : 0); // If it's a boss wave, add 1 more enemy (the boss)
-
-        Debug.Log($"[WaveManager] Advancing to Wave {waveNumber}. Enemies Remaining: {enemiesRemaining}");
-
-        // Start the new wave after a delay (cooldown)
-        StartCoroutine(WaitForNextWave());
+        audioSource.PlayOneShot(finalWaveCompleteSound);
     }
+
+    return; // Prevent any further waves from being triggered
+}
+
+
+    waveNumber++; // Move to the next wave
+    isBossWave = (waveNumber == finalWave); // Check if it's the final boss wave
+
+    int enemyCount = GetEnemyCountForWave(waveNumber);
+    enemiesRemaining = enemyCount + (isBossWave ? 1 : 0);
+
+    Debug.Log($"[WaveManager] Advancing to Wave {waveNumber}. Enemies Remaining: {enemiesRemaining}");
+
+    StartCoroutine(WaitForNextWave());
+}
+
 
     private IEnumerator WaitForNextWave()
     {
