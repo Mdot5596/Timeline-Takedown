@@ -44,7 +44,7 @@ public class BossAI : MonoBehaviour
         }
     }
 
-   private void Die()
+   public void Die()
   {
 
  //   if (waveNumber == 5 && dropItem != null)

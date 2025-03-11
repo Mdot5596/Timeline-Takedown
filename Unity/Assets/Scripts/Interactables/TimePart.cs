@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; // Required for scene management
 
-public class TimePart : MonoBehaviour
+
+public class TimePart : MonoBehaviour, IInteractable 
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Interact()
     {
         
+        EndGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    void EndGame()
     {
-        
+        // Option 1: Load a "Game Over" scene
+        // Ensure you have added the scene to the Build Settings
+        SceneManager.LoadSceneAsync(3);
+
+        // Option 2: Quit the application (works only in a built game)
+      //  Application.Quit();
+
+        // Log to confirm in the editor
+        Debug.Log("Game Over! The application is quitting...");
     }
 }

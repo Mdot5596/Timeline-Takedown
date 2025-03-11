@@ -44,19 +44,23 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // Method to handle the death of the enemy
-    private void Die()
+private void Die()
+{
+    if (isDead) return; // Prevent multiple death calls
+
+    isDead = true; 
+    Debug.Log("Enemy died!");
+
+    // Check if this enemy has a BossAI script
+    BossAI bossAI = GetComponent<BossAI>();
+    if (bossAI != null)
     {
-        if (isDead) return; // Prevent the death logic from being called more than once
-
-        isDead = true; // Mark the enemy as dead
-        Debug.Log("Enemy died!");
-
-        // Notify WaveManager that this enemy has died
-        FindObjectOfType<WaveManager>().EnemyDefeated();
-
-        //  add a death animation or effect here
-
-        Destroy(gameObject); // Destroy the enemy object
+        bossAI.Die();  //  Calls the BossAI Die method to drop the item
     }
+
+    FindObjectOfType<WaveManager>().EnemyDefeated(); 
+
+    Destroy(gameObject); 
+}
+
 }
