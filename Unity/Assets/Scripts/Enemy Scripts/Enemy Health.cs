@@ -6,12 +6,18 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private HealthBar _healthbar;
 
+    private Animator anim;
+
     public int maxHealth = 100; // Maximum health
     private int currentHealth;
     private bool isDead = false; // Flag to prevent multiple calls to Die()
 
     private void Start()
     {
+
+        // Get the Animator component
+        anim = GetComponent<Animator>();
+
         // Get the HealthBar component attached to this enemy
         _healthbar = GetComponentInChildren<HealthBar>();
 
@@ -60,7 +66,18 @@ private void Die()
 
     FindObjectOfType<WaveManager>().EnemyDefeated(); 
 
-    Destroy(gameObject); 
-}
+        // Stop enemy movement
+    if (GetComponent<UnityEngine.AI.NavMeshAgent>() != null)
+    {
+        GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
+    }
+
+        // Play the death animation (if Animator is found)
+        if (anim != null)
+        {
+            anim.SetTrigger("Die"); 
+        }
+        Destroy(gameObject, 3f); // Destroy after x seconds 
+    }
 
 }
