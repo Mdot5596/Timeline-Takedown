@@ -97,7 +97,7 @@ MonoBehaviour:
   baseHealth: 1
   baseSpeed: 2.5
   baseDamage: 50
-  FinalBossReward: {fileID: 2236152255696920055, guid: 9026af9a18bf60944b599bc86a6a0897, type: 3}
+  FinalBossReward: {fileID: 2422527840100305557, guid: f94afb6a7872bd547951d501eabc835c, type: 3}
 --- !u!114 &7290042556171675182
 MonoBehaviour:
   m_ObjectHideFlags: 0
