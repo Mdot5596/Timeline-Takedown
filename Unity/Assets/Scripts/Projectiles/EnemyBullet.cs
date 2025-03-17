@@ -9,45 +9,49 @@ public class EnemyBullet : MonoBehaviour
     public float shootForce = 20f;
     public float upwardForce = 0f;
 
+    private Rigidbody rb;
 
-    private Rigidbody rb; // Reference to the Rigidbody component
+private void Start()
+{
+    rb = GetComponent<Rigidbody>();
 
-
-
-    private void Start()
+    // Ignore collisions between the bullet and any enemy
+    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    foreach (GameObject enemy in enemies)
     {
-        // Get the Rigidbody component attached to the bullet
-        rb = GetComponent<Rigidbody>();
-
-        if (rb == null)
-        {
-            Debug.LogError("Rigidbody not attached to the bullet!");
-            return;
-        }
-
-        // Apply initial force to the bullet
-        Vector3 forceDirection = transform.forward * shootForce + transform.up * upwardForce;
-        rb.AddForce(forceDirection, ForceMode.Impulse);
-
+        Physics.IgnoreCollision(GetComponent<Collider>(), enemy.GetComponent<Collider>());
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    if (rb == null)
     {
-        Debug.Log($"Bullet hit: {collision.gameObject.name}");
+        Debug.LogError("Rigidbody not attached to the bullet!");
+        return;
+    }
 
+    Vector3 forceDirection = transform.forward * shootForce + transform.up * upwardForce;
+    rb.AddForce(forceDirection, ForceMode.Impulse);
+
+    Destroy(gameObject, bulletLifetime);
+}
+
+
+private void OnCollisionEnter(Collision collision)
+{
+    Debug.Log($"Bullet hit: {collision.gameObject.name}");
+
+    // Check if the object hit is the Player before applying damage
+    if (collision.gameObject.CompareTag("Player"))
+    {
         HealthManager healthManager = collision.gameObject.GetComponent<HealthManager>();
 
         if (healthManager != null)
         {
             healthManager.TakeDamage(damage);
-
-            Destroy(gameObject);
         }
-        
-      //  else
-      //  {
-      //     Destroy(gameObject, 12f); // Destroy after 1 2  sexc
-      //  }
     }
+
+    // Destroy bullet on impact (regardless of what it hits)
+    Destroy(gameObject);
+}
+
 }

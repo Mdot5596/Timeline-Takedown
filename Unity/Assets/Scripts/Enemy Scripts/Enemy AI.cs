@@ -18,10 +18,31 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float baseSpeed = 3.5f;
     [SerializeField] private int baseDamage = 10;
 
+    [Header("Shooting Settings")]
+    public GameObject bulletPrefab;
+    public Transform shootPoint;
+    public float shootForce = 20f;
+    public float shootCooldown = 1.5f;
+    private bool readyToShoot = true;
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Update()
+    {
+        if (player != null)
+        {
+            agent.SetDestination(player.position);
+
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            if (distanceToPlayer < 15f) // Set shooting range
+            {
+                ShootAtPlayer();
+            }
+        }
     }
 
     public void ScaleStats(int waveNumber)
@@ -43,10 +64,34 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-private void Die()
-{
-    FindObjectOfType<WaveManager>().EnemyDefeated();
-    Destroy(gameObject);
-}
+    private void Die()
+    {
+        FindObjectOfType<WaveManager>().EnemyDefeated();
+        Destroy(gameObject);
+    }
 
+    private void ShootAtPlayer()
+    {
+        if (readyToShoot && bulletPrefab != null && shootPoint != null)
+        {
+            readyToShoot = false;
+
+            // Instantiate bullet and set direction
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                Vector3 direction = (player.position - shootPoint.position).normalized;
+                rb.AddForce(direction * shootForce, ForceMode.Impulse);
+            }
+
+            // Reset shooting cooldown
+            Invoke(nameof(ResetShot), shootCooldown);
+        }
+    }
+
+    private void ResetShot()
+    {
+        readyToShoot = true;
+    }
 }
