@@ -8,7 +8,6 @@ public class ProjectileGunTutorial : MonoBehaviour
 
     //Gun audio
     public AudioSource gunAudio;
-    
 
     //bullet 
     public GameObject bullet;
@@ -154,6 +153,7 @@ public class ProjectileGunTutorial : MonoBehaviour
     private void Reload()
     {
         reloading = true;
+
         Invoke("ReloadFinished", reloadTime); //Invoke ReloadFinished function with your reloadTime as delay
     }
     private void ReloadFinished()
