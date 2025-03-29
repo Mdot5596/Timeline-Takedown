@@ -11951,7 +11951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7624738691586270593, guid: 279d764eda1899245aa31831a3a89206, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 234.5
+      value: 264
       objectReference: {fileID: 0}
     - target: {fileID: 7624738691586270593, guid: 279d764eda1899245aa31831a3a89206, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12217,83 +12217,6 @@ Transform:
   - {fileID: 1875584016}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &787091072
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.6904
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.9233
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.2793
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 762.7905
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 52.564934
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 230.74356
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_Name
-      value: Parasite L Starkie
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866666021909216657, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: f0047d0ca4169c8418ff7e72f48ac182, type: 2}
-    - target: {fileID: 5866666021909216657, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 29310bf6939b9bb41944c8af1051dc62, type: 3}
 --- !u!43 &787536211
 Mesh:
   m_ObjectHideFlags: 0
@@ -17726,7 +17649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonPrefab: {fileID: 5002776562759399960, guid: 6f17b8bf26c55dd4a8ab9c1b84de0c03, type: 3}
-  bossPrefab: {fileID: 0}
+  bossPrefab: {fileID: 5688851653723109509, guid: eb79fd3a230218145817aef8ec8d4d92, type: 3}
   spawnPoints:
   - {fileID: 808166187}
   - {fileID: 1875584016}
@@ -22091,4 +22014,3 @@ SceneRoots:
   - {fileID: 620429377}
   - {fileID: 420365625}
   - {fileID: 744382311}
-  - {fileID: 787091072}

@@ -44,18 +44,31 @@ public class BossAI : MonoBehaviour
         }
     }
 
-   public void Die()
-  {
+public void Die()
+{
+    WaveManager waveManager = FindObjectOfType<WaveManager>();
+    if (waveManager != null)
+    {
+        waveManager.EnemyDefeated();
+    }
 
- //   if (waveNumber == 5 && dropItem != null)
- //   {
-  //      Instantiate(dropItem, transform.position, Quaternion.identity);
-  //  }
+    // Ensure NavMeshAgent is valid before stopping
+    if (agent != null && agent.isOnNavMesh)
+    {
+        agent.isStopped = true;
+        agent.enabled = false; // Disable to prevent further movement
+    }
+    else
+    {
+        Debug.LogWarning("Boss NavMeshAgent is not on the NavMesh or missing.");
+    }
 
-    FindObjectOfType<WaveManager>().EnemyDefeated(); 
     DropItem();
-    Destroy(gameObject);
- }
+    Destroy(gameObject, 3f);
+    GetComponent<EnemyController>().enabled = false;
+
+}
+
 
 void DropItem()
 {

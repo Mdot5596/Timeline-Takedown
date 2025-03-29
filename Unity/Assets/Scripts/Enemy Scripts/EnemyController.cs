@@ -1,21 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI; // Ensure NavMeshAgent is accessible
+
+
+// This script ensures that only active, alive enemies on a valid NavMesh attempt to follow the player.
+// Without these checks, you'd get annoying errors in Unity's console when enemies die or leave the NavMesh.
 
 public class EnemyController : MonoBehaviour
 {
-    UnityEngine.AI.NavMeshAgent nav;
-    Transform player;
-    // Start is called before the first frame update
+    private NavMeshAgent nav;
+    private Transform player;
+    private EnemyHealth enemyHealth;
+
     void Awake()
     {
-        nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
-        player = GameObject.FindGameObjectWithTag ("Player").transform;
+        nav = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        nav.SetDestination (player.position);
+        // Check if the player exists, enemy is alive, and the agent is active & on NavMesh
+        if (player == null || enemyHealth == null || enemyHealth.IsDead) return;
+
+        if (nav != null && nav.enabled && nav.isOnNavMesh)
+        {
+            nav.SetDestination(player.position);
+        }
     }
 }

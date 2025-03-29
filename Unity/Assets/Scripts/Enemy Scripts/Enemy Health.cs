@@ -11,6 +11,8 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 100; // Maximum health
     private int currentHealth;
     private bool isDead = false; // Flag to prevent multiple calls to Die()
+    public bool IsDead => isDead;
+
 
     private void Start()
     {
@@ -57,27 +59,36 @@ private void Die()
     isDead = true; 
     Debug.Log("Enemy died!");
 
-    // Check if this enemy has a BossAI script
     BossAI bossAI = GetComponent<BossAI>();
     if (bossAI != null)
     {
-        bossAI.Die();  //  Calls the BossAI Die method to drop the item
+        bossAI.Die();
     }
 
-    FindObjectOfType<WaveManager>().EnemyDefeated(); 
+    EnemyAI enemyAI = GetComponent<EnemyAI>();
+if (enemyAI != null)
+{
+    enemyAI.enabled = false;
+}
 
-        // Stop enemy movement
-    if (GetComponent<UnityEngine.AI.NavMeshAgent>() != null)
+
+    FindObjectOfType<WaveManager>()?.EnemyDefeated(); 
+
+    // Check if NavMeshAgent is valid, enabled, and on the NavMesh
+    var agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+    if (agent != null && agent.enabled && agent.isOnNavMesh)
     {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
+        agent.isStopped = true; // Safely stop the agent
+        agent.enabled = false;  // Disable it to prevent further errors
     }
 
-        // Play the death animation (if Animator is found)
-        if (anim != null)
-        {
-            anim.SetTrigger("Die"); 
-        }
-        Destroy(gameObject, 3f); // Destroy after x seconds 
+    // Play death animation if available
+    if (anim != null)
+    {
+        anim.SetTrigger("Die"); 
     }
+
+    Destroy(gameObject, 3f); // Destroy after x seconds
+}
 
 }
