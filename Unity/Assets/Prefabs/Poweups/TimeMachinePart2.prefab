@@ -81,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c43445fa38017f499819509f71cec7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7568269369839816875}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c43445fa38017f499819509f71cec7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2896126059909867645}
   m_SourcePrefab: {fileID: 100100000, guid: 7c43445fa38017f499819509f71cec7a, type: 3}
 --- !u!1 &7285638657472037244 stripped
 GameObject:
@@ -132,3 +135,16 @@ Halo:
     serializedVersion: 2
     rgba: 457336938
   m_Size: 1.2
+--- !u!114 &-2896126059909867645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285638657472037244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a44850787ff76f4891b2593f00cf77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevel: 1
