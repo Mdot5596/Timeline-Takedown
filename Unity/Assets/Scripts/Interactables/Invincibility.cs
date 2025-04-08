@@ -9,17 +9,19 @@ public class InvincibilityPowerUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HealthManager healthManager = other.GetComponentInParent<HealthManager>();
-            PowerUpUI powerUpUI = FindObjectOfType<PowerUpUI>();
+        //    PowerUpUI powerUpUI = FindObjectOfType<PowerUpUI>();
 
             if (healthManager != null)
             {
                 healthManager.ActivateInvincibility(duration);
                 Debug.Log("[Invincibility] Player is now invincible for " + duration + " seconds.");
 
-                if (powerUpUI != null)
-                {
-                    powerUpUI.ShowPowerUpMessage("Invincible for " + duration + " seconds!");
-                }
+                PowerUpUIManager uiManager = FindObjectOfType<PowerUpUIManager>();
+if (uiManager != null)
+{
+    uiManager.ShowInvincibilityUI();
+}
+
             }
 
             Destroy(gameObject);

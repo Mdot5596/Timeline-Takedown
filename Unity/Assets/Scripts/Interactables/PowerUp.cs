@@ -42,12 +42,12 @@ private void ApplyEffect(GameObject player)
         {
             healthManager.Heal(50);
             Debug.Log("[PowerUp] Player healed! New health: " + healthManager.healthAmount);
+          PowerUpUIManager uiManager = FindObjectOfType<PowerUpUIManager>();
+           if (uiManager != null)
+              {
+                uiManager.ShowHealUI(); // Or ShowInstantKillUI()
+              }
 
-            // Show UI message
-            if (powerUpUI != null)
-            {
-                powerUpUI.ShowPowerUpMessage("Healed +50 HP!");    ////Need to think of power up names
-            }
         }
     }
     else if (powerUpType == PowerUpType.InstantKill)
