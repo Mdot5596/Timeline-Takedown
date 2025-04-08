@@ -15,11 +15,26 @@ private void Start()
 {
     rb = GetComponent<Rigidbody>();
 
-    // Ignore collisions between the bullet and any enemy
+    Collider bulletCollider = GetComponent<Collider>();
+    
+    // Ignore collisions with all enemy colliders (including Boss)
     GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
     foreach (GameObject enemy in enemies)
     {
-        Physics.IgnoreCollision(GetComponent<Collider>(), enemy.GetComponent<Collider>());
+        foreach (Collider enemyCol in enemy.GetComponentsInChildren<Collider>())
+        {
+            Physics.IgnoreCollision(bulletCollider, enemyCol);
+        }
+    }
+
+    // Optional: ignore boss too if it's not tagged as "Enemy"
+    GameObject boss = GameObject.FindGameObjectWithTag("Boss");
+    if (boss != null)
+    {
+        foreach (Collider bossCol in boss.GetComponentsInChildren<Collider>())
+        {
+            Physics.IgnoreCollision(bulletCollider, bossCol);
+        }
     }
 
     if (rb == null)
