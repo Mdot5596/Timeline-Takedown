@@ -6,6 +6,7 @@ public class PowerUpUIManager : MonoBehaviour
     public GameObject invincibilityUI;
     public GameObject healUI;
     public GameObject instantKillUI;
+    public GameObject speedboostUI;
 
     public float displayDuration = 3f;
 
@@ -23,6 +24,12 @@ public class PowerUpUIManager : MonoBehaviour
     {
         StartCoroutine(ShowUI(instantKillUI));
     }
+
+    public void ShowSpeedBoostUI()
+    {
+    StartCoroutine(ShowUI(speedboostUI));
+    }
+
 
     private IEnumerator ShowUI(GameObject uiElement)
     {

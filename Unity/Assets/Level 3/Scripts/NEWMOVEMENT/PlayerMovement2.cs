@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement2 : MonoBehaviour
@@ -9,8 +8,14 @@ public class PlayerMovement2 : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
 
+    private float defaultSpeed; 
     Vector3 velocity;
     bool isGrounded;
+
+    private void Start()
+    {
+        defaultSpeed = speed; 
+    }
 
     void Update()
     {
@@ -18,7 +23,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = 0f; 
+            velocity.y = 0f;
         }
 
         float x = Input.GetAxis("Horizontal");
@@ -34,7 +39,22 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
         velocity.y += gravity * Time.deltaTime;
-
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void ActivateSpeedBoost(float boostedSpeed, float duration)
+    {
+        StartCoroutine(SpeedBoostCoroutine(boostedSpeed, duration));
+    }
+
+    private IEnumerator SpeedBoostCoroutine(float boostedSpeed, float duration)
+    {
+        speed = boostedSpeed;
+        Debug.Log("Speed boost active!");
+
+        yield return new WaitForSeconds(duration);
+
+        speed = defaultSpeed;
+        Debug.Log("Speed boost ended.");
     }
 }
