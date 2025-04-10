@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject bossPrefab; 
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private WaveManager waveManager;
-
+    
     private int enemiesAlive = 0;
 
     public void StartWave(int enemyCount, int waveNumber)

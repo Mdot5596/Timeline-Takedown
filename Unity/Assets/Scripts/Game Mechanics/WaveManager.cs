@@ -19,7 +19,8 @@ public class WaveManager : MonoBehaviour
     private int finalWave = 5;
 
     // Manually define the number of enemies per wave
-    private int[] enemiesPerWave = { 1, 2, 3, 4, 5 }; // Wave 10 is boss only
+  //  private int[] enemiesPerWave = { 1, 2, 3, 4, 5 }; // Wave 10 is boss only
+    private int[] enemiesPerWave = { 4, 8, 12, 15, 2 };
 
     // UI Elements
     [SerializeField] private TextMeshProUGUI waveText;
