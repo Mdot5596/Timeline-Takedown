@@ -14,7 +14,7 @@ public class TimePart : MonoBehaviour, IInteractable
 
     void EndGame()
     {
-        SceneManager.LoadSceneAsync(3);
+        SceneManager.LoadSceneAsync(2);
         //Need to add a level select maybe or a cutscene or a loading screen
 
     }
