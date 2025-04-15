@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9bd28382743a64b44a813d25d981030a, type: 2}
   m_LightingSettings: {fileID: 1438723909}
 --- !u!196 &4
 NavMeshSettings:
@@ -9893,6 +9893,18 @@ PrefabInstance:
       propertyPath: ammunitionDisplay
       value: 
       objectReference: {fileID: 288119638}
+    - target: {fileID: 1732285859176471657, guid: 9b472b1b09d774443adac3a4316002f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5500512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732285859176471657, guid: 9b472b1b09d774443adac3a4316002f2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.42813402
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732285859176471657, guid: 9b472b1b09d774443adac3a4316002f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.81700605
+      objectReference: {fileID: 0}
     - target: {fileID: 5904146458455846824, guid: 9b472b1b09d774443adac3a4316002f2, type: 3}
       propertyPath: healthBar
       value: 
