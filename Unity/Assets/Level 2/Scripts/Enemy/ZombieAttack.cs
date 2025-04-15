@@ -18,34 +18,31 @@ public class ZombieAttack : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+private void OnTriggerStay(Collider other)
+{
+    if (other.CompareTag("Player")) 
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (Time.time >= nextAttackTime)
         {
-            // If the attack cooldown has passed
-            if (Time.time >= nextAttackTime)
+            anim.SetTrigger("Attack");
+
+            HealthManager playerHealth = other.GetComponentInParent<HealthManager>();
+            DamageOverlay screenEffect = other.GetComponentInParent<DamageOverlay>();
+
+            if (playerHealth != null)
             {
-                // Play the attack animation once
-                anim.SetTrigger("Attack");
-
-                // Deal damage to the player
-                HealthManager playerHealth = collision.gameObject.GetComponent<HealthManager>();
-                DamageOverlay screenEffect = collision.gameObject.GetComponent<DamageOverlay>();
-
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(damage);
-                    Debug.Log("Zombie dealt " + damage + " damage to player.");
-                }
-
-                if (screenEffect != null)
-                {
-                    screenEffect.ShowDamageEffect(); // Trigger red screen pulse
-                }
-
-                // Set next attack time
-                nextAttackTime = Time.time + attackRate;
+                playerHealth.TakeDamage(damage);
             }
+
+            if (screenEffect != null)
+            {
+                screenEffect.ShowDamageEffect();
+            }
+
+            nextAttackTime = Time.time + attackRate;
         }
     }
+}
+
+
 }

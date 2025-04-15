@@ -20,6 +20,9 @@ public class SpeedBoostPowerUp : MonoBehaviour
                 playerMovement.ActivateSpeedBoost(boostedSpeed, duration);
                 Debug.Log("Speed boost applied to player!");
                 PowerUpUIManager uiManager = FindObjectOfType<PowerUpUIManager>();
+
+
+
 if (uiManager != null)
 {
     uiManager.ShowSpeedBoostUI();
@@ -29,4 +32,6 @@ if (uiManager != null)
             Destroy(gameObject); // Remove power-up after use
         }
     }
+
+    
 }
