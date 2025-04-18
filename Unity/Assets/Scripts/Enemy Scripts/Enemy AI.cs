@@ -70,25 +70,27 @@ public class EnemyAI : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void ShootAtPlayer()
+private void ShootAtPlayer()
+{
+    if (readyToShoot && bulletPrefab != null && shootPoint != null)
     {
-        if (readyToShoot && bulletPrefab != null && shootPoint != null)
+        readyToShoot = false;
+
+        // Instantiate the bullet at the shoot point
+        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (rb != null)
         {
-            readyToShoot = false;
-
-            // Instantiate bullet and set direction
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                Vector3 direction = (player.position - shootPoint.position).normalized;
-                rb.AddForce(direction * shootForce, ForceMode.Impulse);
-            }
-
-            // Reset shooting cooldown
-            Invoke(nameof(ResetShot), shootCooldown);
+            // Use shootPoint.forward to apply force in its forward direction
+            Vector3 force = shootPoint.forward * shootForce;
+            rb.AddForce(force, ForceMode.Impulse);
         }
+
+        Invoke(nameof(ResetShot), shootCooldown);
     }
+}
+
+
 
     private void ResetShot()
     {
