@@ -1,13 +1,38 @@
-# Morgan Hodge - Timeline Takedown
 
-# What is Timeline Takedown?
- ... 
-### Controls:
-  - ....
-### How to Launch the Game:
-- ...
 
-# Devlogs
+<div align="center">
+  <img src="Documentation/Poster/Text/Logo1.png" alt="Game Poster" width="100%"/>
+</div>
+
+
+Timeline Takedown is a first-person, round-based survival game developed as my final year dissertation project at the University of Plymouth.
+
+
+<div align="center">
+  <img src="Documentation/Poster/Submission/10779528-thump.jpg" alt="Game Poster" width="600"/>
+</div>
+
+
+# 🗂️ What's in this repository?
+- A comprehensive Game Design Document (GDD)
+
+- A 10,000-word report detailing the development process
+
+- Paper-based design assets (level layouts, UI concepts, character sketches)
+
+- Poster drafts and the final promotional poster
+
+
+# 🕹️ How to Play
+For full instructions on running and playing the game, head over to my Itch.io page.
+
+# 🎮 About the Game
+In Timeline Takedown, you must survive intense waves of enemies and defeat the boss at the end of each round to progress to the next level.
+The game was developed in Unity over a 6-month period.
+
+
+# 📷 Devlogs
+Check out the development journey, challenges, and progress updates:
 - [Devlog 1](https://youtu.be/Su4Demj-MFw)
 - [Devlog 2](https://youtu.be/RXlF7QE14os)
 - [Devlog_3](https://youtu.be/vxEHmGPZ-y4)
@@ -15,10 +40,9 @@
 - [Devlog_5](https://youtu.be/2hVWVUD5KXo)
 - [Devlog 6](https://youtu.be/nWcjUrmOtSQ)
   
-# Resources
-### Paper-based images such as concept art and level designs:</h3>
 
-## Tools Used
+
+# 🛠️Tools Used
 - [Map Creation](https://app.dungeonscrawl.com/)
 - [Tracking Tool](https://trello.com/b/Y88bQSkB/timeline-takedown)
 - [Online Assets](https://assetstore.unity.com/)
