@@ -39,7 +39,7 @@ Check out the development journey, challenges, and progress updates:
 - [Devlog_4](https://youtu.be/lJwd-J0-sTs)
 - [Devlog_5](https://youtu.be/2hVWVUD5KXo)
 - [Devlog 6](https://youtu.be/nWcjUrmOtSQ)
-  
+- [Devlog 7](https://youtu.be/-r5FLIDuMCo)
 
 
 # 🛠️Tools Used
