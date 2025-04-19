@@ -1,72 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    public float damage = 10f; 
-    public float bulletLifetime = 5f; 
+    public float damage = 10f;
+    public float bulletLifetime = 5f;
     public float shootForce = 20f;
     public float upwardForce = 0f;
 
-    private Rigidbody rb;
+    public Rigidbody rb; // Now public, so we can assign it manually if needed
 
-private void Start()
-{
-    rb = GetComponent<Rigidbody>();
-
-    Collider bulletCollider = GetComponent<Collider>();
-    
-    // Ignore collisions with all enemy colliders (including Boss)
-    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-    foreach (GameObject enemy in enemies)
+    private void Awake()
     {
-        foreach (Collider enemyCol in enemy.GetComponentsInChildren<Collider>())
+        if (rb == null)
+            rb = GetComponent<Rigidbody>();
+
+        if (rb == null)
+            Debug.LogError("Rigidbody missing on bullet (Awake)!", gameObject);
+    }
+
+    private void Start()
+    {
+        if (rb == null)
         {
-            Physics.IgnoreCollision(bulletCollider, enemyCol);
+            rb = GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                Debug.LogError("Rigidbody still missing on bullet (Start)!", gameObject);
+                return;
+            }
         }
+
+        Debug.Log("Bullet Rigidbody found and force applied", gameObject);
+
+        Vector3 forceDirection = transform.forward * shootForce + transform.up * upwardForce;
+        rb.AddForce(forceDirection, ForceMode.Impulse);
+
+        Destroy(gameObject, bulletLifetime);
     }
 
-    // Optional: ignore boss too if it's not tagged as "Enemy"
-    GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-    if (boss != null)
+    private void OnCollisionEnter(Collision collision)
     {
-        foreach (Collider bossCol in boss.GetComponentsInChildren<Collider>())
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Physics.IgnoreCollision(bulletCollider, bossCol);
+            HealthManager health = collision.gameObject.GetComponent<HealthManager>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+            }
         }
+
+        Destroy(gameObject);
     }
-
-    if (rb == null)
-    {
-        Debug.LogError("Rigidbody not attached to the bullet!");
-        return;
-    }
-
-    Vector3 forceDirection = transform.forward * shootForce + transform.up * upwardForce;
-    rb.AddForce(forceDirection, ForceMode.Impulse);
-
-    Destroy(gameObject, bulletLifetime);
-}
-
-
-private void OnCollisionEnter(Collision collision)
-{
-    Debug.Log($"Bullet hit: {collision.gameObject.name}");
-
-    // Check if the object hit is the Player before applying damage
-    if (collision.gameObject.CompareTag("Player"))
-    {
-        HealthManager healthManager = collision.gameObject.GetComponent<HealthManager>();
-
-        if (healthManager != null)
-        {
-            healthManager.TakeDamage(damage);
-        }
-    }
-
-    // Destroy bullet on impact (regardless of what it hits)
-    Destroy(gameObject);
-}
-
 }

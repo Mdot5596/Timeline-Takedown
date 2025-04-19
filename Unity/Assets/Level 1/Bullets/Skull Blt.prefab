@@ -102,6 +102,7 @@ MonoBehaviour:
   bulletLifetime: 5
   shootForce: 20
   upwardForce: 0
+  rb: {fileID: 6091168806931523744}
 --- !u!135 &5864097296843778242
 SphereCollider:
   m_ObjectHideFlags: 0

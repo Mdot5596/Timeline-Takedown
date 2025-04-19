@@ -936,9 +936,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4311111495703447436, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2680014413204938252}
-    - targetCorrespondingSourceObject: {fileID: 4311111495703447436, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6234234096366415215}
   m_SourcePrefab: {fileID: 100100000, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
 --- !u!1 &1325461987280481563 stripped
 GameObject:
@@ -1022,7 +1019,7 @@ MonoBehaviour:
   baseHealth: 100
   baseSpeed: 5
   baseDamage: 10
-  bulletPrefab: {fileID: 6996702118419933272, guid: c3ac364a30df8dd478b1d7b56cde7d94, type: 3}
+  bulletPrefab: {fileID: 3781737888575284927, guid: 960418d1b3a33114ab1a09c958471f8d, type: 3}
   shootPoint: {fileID: 8997832613081720378}
   shootForce: 20
   shootCooldown: 1.5
@@ -1039,23 +1036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthbar: {fileID: 2225749930156705046}
-  maxHealth: 300
---- !u!114 &6234234096366415215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325461987280481563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f0138efb07526a46aa9125a9d72b093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  bulletLifetime: 5
-  shootForce: 20
-  upwardForce: 0
+  maxHealth: 10
 --- !u!4 &2611988275064479496 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 977136844864435615, guid: 790cbaa43a4b19c4a964617119f8d796, type: 3}
