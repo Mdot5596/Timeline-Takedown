@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; // Ensure NavMeshAgent is accessible
+using UnityEngine.AI; 
 
-
-// This script ensures that only active, alive enemies on a valid NavMesh attempt to follow the player.
-// Without these checks, you'd get annoying errors in Unity's console when enemies die or leave the NavMesh.
 
 public class EnemyController : MonoBehaviour
 {
