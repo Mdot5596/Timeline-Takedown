@@ -74,8 +74,8 @@ public class WaveManager : MonoBehaviour
     }
 
     public void EnemyDefeated()
-{
-    // Make sure we only process if there are enemies remaining
+    {
+    // Make sure only process if there are enemies remaining
     if (enemiesRemaining > 0) 
     {
         Debug.Log($"[WaveManager] Enemy Defeated! Enemies Remaining: {enemiesRemaining}");
@@ -88,7 +88,7 @@ public class WaveManager : MonoBehaviour
 
         // Update UI with the new counts
         enemiesText.text = $"Enemies Left: {enemiesRemaining}";
-        killsText.text = $"Total Kills: {totalKills}"; // Update kills text immediately after a kill
+        killsText.text = $"Total Kills: {totalKills}"; //Remove killtext on final release
     }
     else
     {
@@ -101,26 +101,26 @@ public class WaveManager : MonoBehaviour
         Debug.Log($"[WaveManager] Wave {waveNumber} complete! Moving to next wave.");
         NextWave();
     }
-}
-
-
-private void NextWave()
-{
-    // Ensure we only move to the next wave if all enemies are defeated
-    if (enemiesRemaining > 0) return;
-
-if (waveNumber >= finalWave)
-{
-    Debug.Log("[WaveManager] Final wave completed! No more waves.");
-
-    // Play the final wave complete sound
-    if (audioSource != null && finalWaveCompleteSound != null)
-    {
-        audioSource.PlayOneShot(finalWaveCompleteSound);
     }
 
+
+    private void NextWave()
+   {
+    //only move to the next wave if all enemies are defeated
+    if (enemiesRemaining > 0) return;
+
+      if (waveNumber >= finalWave)
+      {
+         Debug.Log("[WaveManager] Final wave completed! No more waves.");
+
+           // Play the final wave complete sound
+      if (audioSource != null && finalWaveCompleteSound != null)
+        {
+         audioSource.PlayOneShot(finalWaveCompleteSound);
+        }
+
     return; // Prevent any further waves from being triggered
-}
+  }
 
 
     waveNumber++; // Move to the next wave
@@ -137,10 +137,9 @@ if (waveNumber >= finalWave)
 
     private IEnumerator WaitForNextWave()
     {
-        // Wait for 5 seconds before moving to the next wave (adjust this as needed)
+        // Wait for 5 seconds before moving to the next wave 
         yield return new WaitForSeconds(5f); 
 
-        // After the delay, start the new wave
         StartNewWave();
     }
 }
