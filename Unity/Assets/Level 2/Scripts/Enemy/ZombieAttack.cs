@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ZombieAttack : MonoBehaviour
 {
-    public int damage = 10; // Damage per hit
-    public float attackRate = 1.5f; // Attack every X seconds
+    public int damage = 10;
+    public float attackRate = 1.5f; 
 
     private float nextAttackTime = 0f;
-    private Animator anim; // Animator reference
+    private Animator anim; 
 
     private void Start()
     {
