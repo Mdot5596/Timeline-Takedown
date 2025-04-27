@@ -8,9 +8,13 @@
 Timeline Takedown is a first-person, round-based survival game developed as my final year dissertation project at the University of Plymouth.
 
 
+
+
 <div align="center">
   <img src="Documentation/Poster/Submission/10779528-thump.jpg" alt="Game Poster" width="600"/>
 </div>
+
+
 
 
 # 🗂️ What's in this repository?
@@ -24,13 +28,18 @@ Timeline Takedown is a first-person, round-based survival game developed as my f
 
 
 # 🕹️ How to Play
-For full instructions on running and playing the game, head over to my Itch.io page.
+All assets and project files are contained witin the repository, as well as a build.
+
+For quicker setup and play, head over to my itchio page for further instructions on how to play: https://morganhodge.itch.io/timeline-takedown
 
 # 🎮 About the Game
 In Timeline Takedown, you must survive intense waves of enemies and defeat the boss at the end of each round to progress to the next level.
 The game was developed in Unity over a 6-month period.
 
+# 📷 Video Discusing the Final Project
+- [Here](https://youtu.be)
 
+  
 # 📷 Devlogs
 Check out the development journey, challenges, and progress updates:
 - [Devlog 1](https://youtu.be/Su4Demj-MFw)
@@ -47,3 +56,8 @@ Check out the development journey, challenges, and progress updates:
 - [Tracking Tool](https://trello.com/b/Y88bQSkB/timeline-takedown)
 - [Online Assets](https://assetstore.unity.com/)
 - [Modeling tool](https://realtimecsg.com/)
+
+### Timeline Takedown was created By Morgan Hodge
+
+#### Project Supervisor : Ji-Jian Chin
+
