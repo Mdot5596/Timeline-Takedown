@@ -5,6 +5,7 @@ public class BossAI : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Transform player;
+    private Animator animator;
 
     public int baseHealth = 500;
     public float baseSpeed = 2.5f;
@@ -14,28 +15,31 @@ public class BossAI : MonoBehaviour
     private float speed;
     private int damage;
 
-    public GameObject FinalBossReward; 
-    private int waveNumber; 
+    public GameObject FinalBossReward;
+    private int waveNumber;
+
+    private bool isDying = false;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>(); 
     }
 
     public void ScaleStats(int wave)
     {
-        waveNumber = wave; 
+        waveNumber = wave;
         health = baseHealth + (wave * 100);
         speed = baseSpeed + (wave * 0.2f);
         damage = baseDamage + (wave * 10);
 
         agent.speed = speed;
-
     }
 
     public void TakeDamage(int damageAmount)
     {
+        if (isDying) return; 
         health -= damageAmount;
 
         if (health <= 0)
@@ -44,41 +48,51 @@ public class BossAI : MonoBehaviour
         }
     }
 
-public void Die()
-{
-    WaveManager waveManager = FindObjectOfType<WaveManager>();
-    if (waveManager != null)
+    public void Die()
     {
-        waveManager.EnemyDefeated();
+        if (isDying) return; // Already dying, prevent double call
+        isDying = true;
+
+        // Stop agent
+        if (agent != null && agent.isOnNavMesh)
+        {
+            agent.isStopped = true;
+            agent.enabled = false;
+        }
+        else
+        {
+            Debug.LogWarning("Boss NavMeshAgent is not on the NavMesh or missing.");
+        }
+
+        // Disable EnemyController immediately
+        GetComponent<EnemyController>().enabled = false;
+
+        
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+        else
+        {
+            Debug.LogWarning("Animator not found on Boss!");
+        }
+
+       
+        DropItem();
+
+        
+        Destroy(gameObject, 3f);
     }
 
-    // Ensure NavMeshAgent is valid before stopping
-    if (agent != null && agent.isOnNavMesh)
+    void DropItem()
     {
-        agent.isStopped = true;
-        agent.enabled = false; // Disable to prevent further movement
+        if (FinalBossReward != null)
+        {
+            Instantiate(FinalBossReward, transform.position + Vector3.up * 1f, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning("FinalBossReward prefab is not assigned in the Inspector!");
+        }
     }
-    else
-    {
-        Debug.LogWarning("Boss NavMeshAgent is not on the NavMesh or missing.");
-    }
-
-    DropItem();
-    Destroy(gameObject, 3f);
-    GetComponent<EnemyController>().enabled = false;
-
 }
-
-
-void DropItem()
-{
-    if (FinalBossReward != null)
-    {
-        Instantiate(FinalBossReward, transform.position + Vector3.up * 1f, Quaternion.identity);
-    }
-    else
-    {
-        Debug.LogWarning("FinalBossReward prefab is not assigned in the Inspector!");
-    }
-} }
-

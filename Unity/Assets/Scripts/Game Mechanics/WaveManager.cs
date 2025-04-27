@@ -19,8 +19,8 @@ public class WaveManager : MonoBehaviour
     private int finalWave = 5;
 
     // Manually define the number of enemies per wave
-   private int[] enemiesPerWave = { 1, 2, 3, 4, 5 }; // Wave 10 is boss only
-   // private int[] enemiesPerWave = { 4, 8, 12, 15, 2 };
+  // private int[] enemiesPerWave = { 1, 2, 1, 2, 1 }; // Wave 10 is boss only
+   private int[] enemiesPerWave = { 3, 5, 7, 9, 2 };
 
     // UI Elements
     [SerializeField] private TextMeshProUGUI waveText;
@@ -47,7 +47,7 @@ public class WaveManager : MonoBehaviour
         Debug.Log($"[WaveManager] Starting Wave {waveNumber}. Spawning {enemyCount} enemies. Boss: {isBossWave}");
 
         // Update UI
-        waveText.text = isBossWave ? $"Wave {waveNumber} - BOSS FIGHT!" : $"Wave: {waveNumber}";
+        waveText.text = isBossWave ? $"Wave {waveNumber} " : $"Wave: {waveNumber}";
         enemiesText.text = $"Enemies Left: {enemiesRemaining}";
         killsText.text = $"Total Kills: {totalKills}";
 

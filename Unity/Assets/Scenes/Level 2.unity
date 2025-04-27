@@ -9706,6 +9706,10 @@ PrefabInstance:
       propertyPath: powerUpText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4472906399251253869, guid: 6dbdde78fe8ca3f438cb53f5cc2832e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4510637865651680261, guid: 6dbdde78fe8ca3f438cb53f5cc2832e3, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.000002673103
@@ -9893,6 +9897,10 @@ PrefabInstance:
       propertyPath: ammunitionDisplay
       value: 
       objectReference: {fileID: 288119638}
+    - target: {fileID: 1697726678390801379, guid: 9b472b1b09d774443adac3a4316002f2, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1732285859176471657, guid: 9b472b1b09d774443adac3a4316002f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5500512

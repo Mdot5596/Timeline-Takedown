@@ -1137,9 +1137,9 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  baseHealth: 15
+  baseHealth: 50
   baseSpeed: 5
-  baseDamage: 10
+  baseDamage: 6
   bulletPrefab: {fileID: 3781737888575284927, guid: 960418d1b3a33114ab1a09c958471f8d, type: 3}
   shootPoint: {fileID: 7435220651582033964}
   shootForce: 20
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthbar: {fileID: 2718454796639584632}
-  maxHealth: 10
+  maxHealth: 50
 --- !u!1 &1118430597578347148
 GameObject:
   m_ObjectHideFlags: 0
