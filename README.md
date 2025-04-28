@@ -26,9 +26,15 @@ Timeline Takedown is a first-person, round-based survival game developed as my f
 
 - Poster drafts and the final promotional poster
 
+- Game build
+
 
 # 🕹️ How to Play
-All assets and project files are contained witin the repository, as well as a build.
+All assets and project files are contained witin the repository, as well as a build for the game. 
+1.  Clone this Repository 
+2.  Unzip File called "Build of Game"
+3. Launch Timeline Takedown.exe
+4. Enjoy
 
 For quicker setup and play, head over to my itchio page for further instructions on how to play: https://morganhodge.itch.io/timeline-takedown
 
@@ -37,7 +43,7 @@ In Timeline Takedown, you must survive intense waves of enemies and defeat the b
 The game was developed in Unity over a 6-month period.
 
 # 📷 Video Discusing the Final Project
-- [Here](https://youtu.be)
+- [Here](https://youtu.be/qxRej_0ZuJ0)
 
   
 # 📷 Devlogs
