@@ -26,17 +26,18 @@ Timeline Takedown is a first-person, round-based survival game developed as my f
 
 - Poster drafts and the final promotional poster
 
-- Game build
 
 
 # 🕹️ How to Play
-All assets and project files are contained witin the repository, as well as a build for the game. 
-1.  Clone this Repository 
-2.  Unzip File called "Build of Game"
-3. Launch Timeline Takedown.exe
-4. Enjoy
+Head over to https://morganhodge.itch.io/timeline-takedown
 
-For quicker setup and play, head over to my itchio page for further instructions on how to play: https://morganhodge.itch.io/timeline-takedown
+1.  Scroll down the page to the Download button
+2.  Download
+3.  Unzip File called "TimelineTakedownEXE.zip"
+4.  Launch Timeline Takedown.exe
+5.  Enjoy
+
+
 
 # 🎮 About the Game
 In Timeline Takedown, you must survive intense waves of enemies and defeat the boss at the end of each round to progress to the next level.
